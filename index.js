@@ -4,11 +4,8 @@ const fs = require('fs');
 //const port = 3001
 const {port = 3001 } = process.env;
 
-let pokieData = require('./pokieData.json');
-
 let rawdata = fs.readFileSync('pokieData.json');
 let pokieData = JSON.parse(rawdata);
-console.log(pokieData.json);
 
 const app = express();
 
@@ -20,9 +17,14 @@ app.get('/pokemon', (req, res) => {
 
 app.get("/pokemon/:id", async (req, res) => {
     const { id } = req.params;
+    const filterData = pokieData.filter(poki => Number(poki.id) === Number(id))
+    console.log(typeof pokieData[0].id, typeof id)
+    
+    res.send(filterData);
   });
 
-// app.get('/', (req, res) => {
+
+  // app.get('/', (req, res) => {
 //   res.send('Hello World!')
 // })
 
