@@ -4,7 +4,9 @@
   "description": "pokie",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon index"
+    "dev": "nodemon index",  
+    "start": "node index"
+
   },
   "author": "",
   "license": "ISC",
