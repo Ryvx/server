@@ -23,6 +23,25 @@ app.get("/pokemon/:id", async (req, res) => {
     res.send(filterData);
   });
 
+app.get("/pokemon/:id/:info", async (req, res) => {
+    const { info } = req.params;
+    const { id } = req.params;
+    const infoData = pokieData.filter(poki => Number(poki.id) === Number(id))
+    .map(poki => (poki.name.english === info) ? poki.name.english : null)
+      
+     // {
+      //   if (poki.name.english === info) {
+      //     return poki.name.english;
+      //   }
+      //   else {
+      //     return;
+      //   }
+      // })
+
+    console.log(typeof pokieData[0].name.english, typeof info)
+    res.send(infoData);
+  });
+
 
   // app.get('/', (req, res) => {
 //   res.send('Hello World!')
