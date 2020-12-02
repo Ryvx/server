@@ -26,20 +26,13 @@ app.get("/pokemon/:id", async (req, res) => {
 app.get("/pokemon/:id/:info", async (req, res) => {
     const { info } = req.params;
     const { id } = req.params;
-    const infoData = pokieData.filter(poki => Number(poki.id) === Number(id))
-    .map(poki => (poki.name.english === info) ? poki.name.english : null)
-      
-     // {
-      //   if (poki.name.english === info) {
-      //     return poki.name.english;
-      //   }
-      //   else {
-      //     return;
-      //   }
-      // })
-
-    console.log(typeof pokieData[0].name.english, typeof info)
-    res.send(infoData);
+    const selectedPokie = pokieData.find(poki => Number(poki.id) === Number(id))
+    console.log(selectedPokie)
+    const acceptedFields = new Set(["base","type","name"])
+    if (acceptedFields.has(info)) {
+      return res.send(selectedPokie[info]);
+    }
+    res.status(400).send("Pokemon is sleeping");
   });
 
 
