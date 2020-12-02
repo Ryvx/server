@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const fs = require('fs');
 //const port = 3001
-const {port = 3001 } = process.env;
+const {PORT = 3001 } = process.env;
 
 let rawdata = fs.readFileSync('pokieData.json');
 let pokieData = JSON.parse(rawdata);
@@ -47,6 +47,6 @@ app.get("/pokemon/:id/:info", async (req, res) => {
 //   res.send('Hello World!')
 // })
 
-app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`)
+app.listen(PORT, () => {
+  console.log(`Example app listening at http://localhost:${PORT}`)
 })
